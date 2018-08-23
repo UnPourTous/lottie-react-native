@@ -1,12 +1,16 @@
 {
   "name": "lottie-react-native",
-  "version": "2.2.7",
+  "version": "2.5.6",
   "description": "React Native bindings for Lottie",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "src/js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "prepare": "npm run build",
+    "build": "babel src/js --out-dir lib",
+    "watch": "babel src/js --out-dir lib --watch",
     "build:pods": "cd example/ios; bundle exec pod install; cd -",
-    "run:packager": "./node_modules/react-native/packager/packager.sh",
+    "run:packager": "node node_modules/react-native/local-cli/cli.js start",
     "run:ios": "react-native run-ios --project-path ./example/ios",
     "start:android": "adb shell am start -n com.example/.MainActivity",
     "run:android": "./gradlew installDebug && npm run start:android",
@@ -39,19 +43,20 @@
   "homepage": "https://github.com/airbnb/lottie-react-native#readme",
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": ">=0.46"
   },
   "dependencies": {
     "invariant": "^2.2.2",
-    "lottie-ios": "^2.1.3",
+    "lottie-ios": "^2.5.0",
     "prop-types": "^15.5.10",
     "react-native-safe-module": "^1.1.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^6.1.2",
-    "babel-plugin-module-resolver": "^2.3.0",
+    "babel-plugin-module-resolver": "^3.0.0",
     "babel-preset-airbnb": "^1.1.1",
-    "babel-preset-react-native": "1.9.0",
+    "babel-preset-react-native": "^4.0.0",
     "eslint": "^3.3.1",
     "eslint-config-airbnb": "^10.0.1",
     "eslint-import-resolver-babel-module": "^2.2.1",
@@ -60,12 +65,16 @@
     "eslint-plugin-prefer-object-spread": "^1.1.0",
     "eslint-plugin-react": "^6.1.2",
     "gitbook-cli": "^1.0.1",
-    "react": "16.0.0-alpha.12",
-    "react-native": "^0.47.1"
+    "react": "16.0.0",
+    "react-native": "0.50.3",
+    "eslint-config-prettier": "^2.8.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "prettier": "^1.8.2",
+    "prettier-eslint": "^8.2.2"
   },
   "rnpm": {
     "android": {
-      "sourceDir": "./lib/android"
+      "sourceDir": "./src/android"
     }
   }
 }
